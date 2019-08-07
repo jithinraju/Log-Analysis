@@ -5,6 +5,8 @@ You can use simple python codes to organize and analyze your log files like acce
 
 Logparser module parses a log file and provides the details as a proper dictionary arranged in a systematic manner
 
+Copy the logparser.py file to your current working directory for using the loagparser module
+
 ### Output of logparser will be listed as:
 
 ```bash
@@ -12,7 +14,7 @@ Logparser module parses a log file and provides the details as a proper dictiona
 
 ```
 
-# Python code for logparsing an accesslog file
+## Python code for logparsing an accesslog file
 
 This code will organize the log file as the example provided, which will be more understandable
 
@@ -21,10 +23,100 @@ This code will organize the log file as the example provided, which will be more
 ```python
 
 import logparser
+
 file = '/var/log/access_log'
+
 with open(file) as fh:
+    
     for line in fh:
         result = logparser.parser(line)
         print(result)
 
 ```
+
+## Python code for listing the number of hits per IP
+
+This code will list the number of hits per IP
+
+```python
+
+import logparser
+
+File = '/var/log/access_log'
+
+counter = {}
+
+
+with open(File,'r') as fh:
+    
+    for line in fh:
+        
+        ip = logparser.parser(line)['host']
+        
+        if ip not in ipCounter:
+            
+            counter[ip] = 1
+            
+        else:
+
+            counter[ip] += 1 
+  
+for ip in counter:
+    
+    hit = counter[ip]
+    
+    if hit >= 2500:
+        
+        print('{:20}:{}'.format(ip,hit))
+
+```
+
+### Sample result
+
+```python
+
+ipCounter = { '118.24.109.217': 115,
+              '209.17.96.210': 314,
+              '188.213.175.168': 2,
+              '209.17.96.26': 273,
+              '87.7.228.195': 1,
+              '162.158.62.81': 46 }
+```
+
+
+## Python code for listing the hits per day
+
+This code will list the number of hits per day
+
+```python
+
+import logparser
+
+file = 'accesslog'
+
+count = {}
+
+with open(file) as fh:
+    
+    for line in fh:
+        date = logparser.parser(line)["time"].split(':')[0]
+        if date in count:
+            count[date] += 1
+        else:
+            count[date] = 1
+
+for time in count:
+    hit = count[time]
+    print('{} hits on {}'.format(hit,time))
+
+```
+
+### Sample result
+
+```python
+
+9997 hits on 29/Mar/2019
+8000 hits on 30/Mar/2019
+
+```
+
