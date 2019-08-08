@@ -45,7 +45,7 @@ You can download the Logparser file from this [link](https://github.com/jithinra
 
 This code will organize the log file as the example provided, which will be more understandable
 
-** You need to update the absolute path of your logfile while declaring file variable **
+**You need to update the absolute path of your logfile while declaring file variable**
 
 ```python
 
