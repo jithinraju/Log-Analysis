@@ -126,7 +126,7 @@ for time in count:
 
 ```
 
-## Python code for listing the Hits per IP on the basis of Error code
+## Python code for listing the Hits per IP on the basis of STATUS code
 
 
 ```python
@@ -163,10 +163,10 @@ for status in stat:
 ```
 
 
-Result will be a list of IP with the number of ERROR hits organised according to ERROR code
+Result will be a list of IP with the number of ERROR hits organised according to STATUS code
 
 
-## Python code for list the IP list of the ERROR input
+## Python code for list the IP list of the STATUS input
 
 ```python
 
@@ -198,4 +198,4 @@ for hit in ip_list:
     print('{:20} : {}'.format(hit,hitcount))
 ```
 
-You can entrer an Error code and receive the hits per IP with that ERROR code
+You can enter an Status code and receive the hits per IP with that STATUS code
